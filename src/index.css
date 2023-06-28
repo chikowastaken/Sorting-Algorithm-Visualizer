@@ -11,7 +11,6 @@ body {
 
 }
 
-
 /* algorithms */
 
 .center-x {
@@ -21,10 +20,10 @@ body {
 
 .array-flex-container {
   display: flex;
-  gap: 6px;
   align-items: end;
   margin-top: 50px;
   border-bottom: 5px solid skyblue;
+  height: 70vh;
 }
 
 .box {
@@ -34,4 +33,5 @@ body {
   font-weight: 600;
   display: flex;
   justify-content: center;
+  align-items: end;
 }

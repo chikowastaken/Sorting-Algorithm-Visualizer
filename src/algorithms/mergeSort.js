@@ -1,3 +1,5 @@
+import { delay } from "../utility";
+
 export async function mergeSort(indexArray, array, setArray, speed) {
     if (indexArray.length <= 1) {
         return;
@@ -12,11 +14,6 @@ export async function mergeSort(indexArray, array, setArray, speed) {
     await merge(leftIndexArray, rightIndexArray, array, setArray, speed);
 }
 
-
-export async function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 export async function merge(leftIndexArray, rightIndexArray, array, setArray, speed) {
     for (let i = 0; i < leftIndexArray.length; i++) {
         for (let j = 0; j < rightIndexArray.length; j++) {
@@ -24,61 +21,70 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
             const rightIndex = rightIndexArray[j];
             const firstElement = document.getElementById(`${array[leftIndex]}`);
             const secondElement = document.getElementById(`${array[rightIndex]}`);
-            firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
-            secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
-            await delay(speed);
 
-            if (array[leftIndex] > array[rightIndex]) {
-                firstElement.style.backgroundColor = 'rgb(218, 58, 58)';
-                secondElement.style.backgroundColor = 'rgb(218, 58, 58)';
-                await delay(speed);
-
-                const temp = array[leftIndex];
-                array[leftIndex] = array[rightIndex];
-                array[rightIndex] = temp;
-                setArray([...array]);
-                if (checkIfBreak(rightIndexArray, rightIndex, array)) {
-                    j = rightIndexArray.length
-                }
-                await delay(speed);
-
+            if (firstElement && secondElement) {
                 firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
                 secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
                 await delay(speed);
-            }
 
-            secondElement.style.backgroundColor = '';
-            firstElement.style.backgroundColor = '';
+                if (array[leftIndex] > array[rightIndex]) {
+                    firstElement.style.backgroundColor = 'rgb(218, 58, 58)';
+                    secondElement.style.backgroundColor = 'rgb(218, 58, 58)';
+                    await delay(speed);
+
+                    // swap
+                    const temp = array[leftIndex];
+                    array[leftIndex] = array[rightIndex];
+                    array[rightIndex] = temp;
+                    setArray([...array])
+
+                    if (checkIfBreak(rightIndexArray, rightIndex, array)) {
+                        j = rightIndexArray.length
+                    }
+                    await delay(speed);
+
+                    firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
+                    secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
+                    await delay(speed);
+                }
+
+                secondElement.style.backgroundColor = '';
+                firstElement.style.backgroundColor = '';
+            }
         }
     }
 
     if (rightIndexArray.length > 1) {
+        console.log('shemo')
         for (let i = 0; i < rightIndexArray.length; i++) {
             for (let j = i; j < rightIndexArray.length; j++) {
                 const leftIndex = rightIndexArray[i];
                 const rightIndex = rightIndexArray[j]
                 const firstElement = document.getElementById(`${array[leftIndex]}`)
                 const secondElement = document.getElementById(`${array[rightIndex]}`)
-                firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
-                secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
-                await delay(speed)
-                if (array[leftIndex] > array[rightIndex]) {
-                    firstElement.style.backgroundColor = 'rgb(218, 58, 58)';
-                    secondElement.style.backgroundColor = 'rgb(218, 58, 58)';
-                    await delay(speed)
-
-                    const temp = array[leftIndex];
-                    array[leftIndex] = array[rightIndex];
-                    array[rightIndex] = temp;
-                    setArray([...array]);
-                    await delay(speed);
-
+                if (firstElement && secondElement) {
                     firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
                     secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
                     await delay(speed)
+                    if (array[leftIndex] > array[rightIndex]) {
+                        firstElement.style.backgroundColor = 'rgb(218, 58, 58)';
+                        secondElement.style.backgroundColor = 'rgb(218, 58, 58)';
+                        await delay(speed)
+                        // swap
+                        const temp = array[leftIndex];
+                        array[leftIndex] = array[rightIndex];
+                        array[rightIndex] = temp;
+                        setArray([...array])
+
+                        await delay(speed);
+
+                        firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
+                        secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
+                        await delay(speed)
+                    }
+                    firstElement.style.backgroundColor = '';
+                    secondElement.style.backgroundColor = '';
                 }
-                firstElement.style.backgroundColor = '';
-                secondElement.style.backgroundColor = '';
             }
         }
     }

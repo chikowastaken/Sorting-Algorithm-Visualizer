@@ -8,9 +8,13 @@
     align-items: center;
 }
 
-.new-array {
+.generate-new-array-p {
     cursor: pointer;
-    color: white
+    transition: 0.2s;
+}
+
+.generate-new-array-p:hover {
+    color: #ccc;
 }
 
 .slider {

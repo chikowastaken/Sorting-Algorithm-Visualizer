@@ -9,17 +9,32 @@ import {
     SliderMark,
 } from '@chakra-ui/react'
 import './Main.css'
-import Array from './Array'
-import { useContext } from 'react';
-import { MyContext } from '../App';
 import { mergeSort, merge, delay, checkIfBreak } from '../algorithms/mergeSort'
+import { getBoxHeight, getBoxWidth, getFonSize, generateNewArray, updateArray } from '../utility'
+import { bubbleSort } from '../algorithms/bubbleSort'
+
 
 export default function Main() {
-    const [sliderValue, setSliderValue] = useState(50); // Initial value of the slider
+    const [sliderValue, setSliderValue] = useState(100); // Initial value of the slider
     const [tabIndex, setTabIndex] = useState(0)
-    const [array, setArray] = useState([8, 2, 5, 3, 4, 7, 6, 1])
-    // const { array, setArray } = useContext(MyContext);
-    const speed = 150
+    const [array, setArray] = useState([])
+    const minArraySize = 4
+    const maxArraySize = 170
+    const numberFrom = 10
+    const numberTo = 200
+    const speed = 300 - Math.pow(array.length, 2) > 0 ?
+        300 - Math.pow(array.length, 2) : 0
+
+    const boxesGap = {
+        gap: `${array.length < 5 ?
+            '10px' : array.length < 8 ?
+                '8px' : array.length < 11 ?
+                    '6px' : array.length < 20 ?
+                        '4px' : array.length < 50 ?
+                            '3.5px' : array.length < 100 ?
+                                '3px' : array.length < 130 ?
+                                    '2.5px' : 2}`
+    }
 
     const handleSliderChange = (value) => {
         setSliderValue(value)
@@ -30,122 +45,27 @@ export default function Main() {
     }
 
     useEffect(() => {
-        generateNewArray(sliderValue)
+        const arr = generateNewArray(sliderValue, numberFrom, numberTo)
+        setArray(arr)
     }, [sliderValue])
-
-    function generateNewArray(val) {
-
-    }
-
-    function generateRandomNumber() {
-        
-    }
 
     // btn clicked
     function handleSort() {
-        const indexArray = [0, 1, 2, 3, 4, 5, 6, 7]
-        mergeSort(indexArray, array, setArray, speed)
+        // mergeSort
+        // const indexArray = []
+        // for (let i = 0; i < array.length; i++) {
+        //     indexArray.push(i)
+        // }
+        // console.log(array)
+        // mergeSort(indexArray, array, setArray, speed)
+        // console.log(array)
+        bubbleSort(array, setArray, speed)
     }
 
-    // // merge sort
-    // async function mergeSort(indexArray) {
-    //     if (indexArray.length <= 1) {
-    //         setSorting(false);
-    //         return;
-    //     }
-
-    //     const middle = Math.floor(indexArray.length / 2);
-    //     const leftIndexArray = indexArray.slice(0, middle);
-    //     const rightIndexArray = indexArray.slice(middle);
-
-    //     await mergeSort(leftIndexArray);
-    //     await mergeSort(rightIndexArray);
-    //     await merge(leftIndexArray, rightIndexArray);
-    // }
-
-
-    // async function delay(ms) {
-    //     return new Promise(resolve => setTimeout(resolve, ms));
-    // }
-
-    // async function merge(leftIndexArray, rightIndexArray) {
-    //     for (let i = 0; i < leftIndexArray.length; i++) {
-    //         for (let j = 0; j < rightIndexArray.length; j++) {
-    //             const leftIndex = leftIndexArray[i];
-    //             const rightIndex = rightIndexArray[j];
-    //             const firstElement = document.getElementById(`${array[leftIndex]}`);
-    //             const secondElement = document.getElementById(`${array[rightIndex]}`);
-    //             firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
-    //             secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
-    //             await delay(speed);
-
-    //             if (array[leftIndex] > array[rightIndex]) {
-    //                 firstElement.style.backgroundColor = 'rgb(218, 58, 58)';
-    //                 secondElement.style.backgroundColor = 'rgb(218, 58, 58)';
-    //                 await delay(speed);
-
-    //                 const temp = array[leftIndex];
-    //                 array[leftIndex] = array[rightIndex];
-    //                 array[rightIndex] = temp;
-    //                 setArray([...array]);
-    //                 if (checkIfBreak(rightIndexArray, rightIndex)) {
-    //                     j = rightIndexArray.length
-    //                 }
-    //                 await delay(speed);
-
-    //                 firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
-    //                 secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
-    //                 await delay(speed);
-    //             }
-
-    //             secondElement.style.backgroundColor = '';
-    //             firstElement.style.backgroundColor = '';
-    //         }
-    //     }
-
-    //     if (rightIndexArray.length > 1) {
-    //         for (let i = 0; i < rightIndexArray.length; i++) {
-    //             for (let j = i; j < rightIndexArray.length; j++) {
-    //                 const leftIndex = rightIndexArray[i];
-    //                 const rightIndex = rightIndexArray[j]
-    //                 const firstElement = document.getElementById(`${array[leftIndex]}`)
-    //                 const secondElement = document.getElementById(`${array[rightIndex]}`)
-    //                 firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
-    //                 secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
-    //                 await delay(speed)
-    //                 if (array[leftIndex] > array[rightIndex]) {
-    //                     firstElement.style.backgroundColor = 'rgb(218, 58, 58)';
-    //                     secondElement.style.backgroundColor = 'rgb(218, 58, 58)';
-    //                     await delay(speed)
-
-    //                     const temp = array[leftIndex];
-    //                     array[leftIndex] = array[rightIndex];
-    //                     array[rightIndex] = temp;
-    //                     setArray([...array]);
-    //                     await delay(speed);
-
-    //                     firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
-    //                     secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
-    //                     await delay(speed)
-    //                 }
-    //                 firstElement.style.backgroundColor = '';
-    //                 secondElement.style.backgroundColor = '';
-    //             }
-    //         }
-    //     }
-    // }
-
-    // function checkIfBreak(indexArray, index) {
-    //     const num = array[index]
-    //     for (let i = 0; i < indexArray.length; i++) {
-    //         const j = indexArray[i]
-    //         const temp = array[j]
-    //         if (num > temp) {
-    //             return false
-    //         }
-    //     }
-    //     return true
-    // }
+    function generateArray() {
+        const arr = generateNewArray(sliderValue, numberFrom, numberTo)
+        setArray(arr)
+    }
 
     // array elements
     const arrayElements = array.map((num, index) => (
@@ -153,19 +73,22 @@ export default function Main() {
             className="box"
             key={index}
             style={{
-                height: `${num * 40}px`,
+                height: getBoxHeight(num),
+                width: getBoxWidth(array),
+                fontSize: getFonSize(array),
             }}
             id={`${num}`}
         >
-            {num}
+            {sliderValue > 25 ? '' : num}
         </div>
     ))
-
 
     return (
         <div>
             <div className="header">
-                <p className='new-array'>Generate New Array</p>
+                <button className='generate-new-array-p'
+                    onClick={generateArray}
+                >Generate New Array</button>
 
                 <div className='slider'>
                     <p>Change Array Size & Sorting Speed</p>
@@ -174,8 +97,8 @@ export default function Main() {
                         defaultValue={sliderValue}
                         onChange={handleSliderChange}
                         w='100px'
-                        min={4}
-                        max={100}
+                        min={minArraySize}
+                        max={maxArraySize}
                     >
                         <SliderTrack>
                             <SliderFilledTrack />
@@ -200,14 +123,12 @@ export default function Main() {
                 >Sort</Button>
             </div>
 
-            {/* {!sorting && <Array />} */}
             <div className="center-x">
-                <div className="array-flex-container" id="main">
+                <div className="array-flex-container" id="main" style={boxesGap}>
                     {arrayElements}
                 </div>
             </div>
         </div>
-
     )
 }
 
