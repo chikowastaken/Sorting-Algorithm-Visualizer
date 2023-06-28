@@ -1,0 +1,22 @@
+.header {
+    height: 100px;
+    /* background-color: rgb(249, 119, 71); */
+    background-color: cornflowerblue;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-array {
+    cursor: pointer;
+    color: white
+}
+
+.slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    cursor: default;
+}
