@@ -1,3 +1,7 @@
+export const red = '#f95639d9'
+export const green = '#58ee58'
+export const purple = '#965ae1'
+
 // box style functions
 export function getBoxHeight(number) {
     const height = number * 3
@@ -41,5 +45,18 @@ function generateRandomNumber(min, max) {
 }
 
 
+// change elements background color
+export function defaultElementsBackgroundColor(array) {
+    for (let i = 0; i < array.length; i++) {
+        const element = document.getElementById(`${array[i]}`)
+        element.style.backgroundColor = ''
+    }
+}
 
+export function giveElementsFindishedBackgroundColor(array) {
+    for (let i = 0; i < array.length; i++) {
+        const element = document.getElementById(`${array[i]}`)
+        element.style.backgroundColor = purple
+    }
+}
 

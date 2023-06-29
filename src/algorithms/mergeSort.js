@@ -1,4 +1,5 @@
-import { delay } from "../utility";
+import { delay, red, green } from "../utility";
+
 
 export async function mergeSort(indexArray, array, setArray, speed) {
     if (indexArray.length <= 1) {
@@ -23,13 +24,13 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
             const secondElement = document.getElementById(`${array[rightIndex]}`);
 
             if (firstElement && secondElement) {
-                firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
-                secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
+                firstElement.style.backgroundColor = green;
+                secondElement.style.backgroundColor = green;
                 await delay(speed);
 
                 if (array[leftIndex] > array[rightIndex]) {
-                    firstElement.style.backgroundColor = 'rgb(218, 58, 58)';
-                    secondElement.style.backgroundColor = 'rgb(218, 58, 58)';
+                    firstElement.style.backgroundColor = red;
+                    secondElement.style.backgroundColor = red;
                     await delay(speed);
 
                     // swap
@@ -43,8 +44,8 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
                     }
                     await delay(speed);
 
-                    firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
-                    secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
+                    firstElement.style.backgroundColor = green;
+                    secondElement.style.backgroundColor = green;
                     await delay(speed);
                 }
 
@@ -63,12 +64,12 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
                 const firstElement = document.getElementById(`${array[leftIndex]}`)
                 const secondElement = document.getElementById(`${array[rightIndex]}`)
                 if (firstElement && secondElement) {
-                    firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
-                    secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
+                    firstElement.style.backgroundColor = green;
+                    secondElement.style.backgroundColor = green;
                     await delay(speed)
                     if (array[leftIndex] > array[rightIndex]) {
-                        firstElement.style.backgroundColor = 'rgb(218, 58, 58)';
-                        secondElement.style.backgroundColor = 'rgb(218, 58, 58)';
+                        firstElement.style.backgroundColor = red;
+                        secondElement.style.backgroundColor = red;
                         await delay(speed)
                         // swap
                         const temp = array[leftIndex];
@@ -78,8 +79,8 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
 
                         await delay(speed);
 
-                        firstElement.style.backgroundColor = 'rgb(44, 216, 44)';
-                        secondElement.style.backgroundColor = 'rgb(44, 216, 44)';
+                        firstElement.style.backgroundColor = green;
+                        secondElement.style.backgroundColor = green;
                         await delay(speed)
                     }
                     firstElement.style.backgroundColor = '';
