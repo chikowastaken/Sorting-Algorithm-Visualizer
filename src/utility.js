@@ -46,17 +46,70 @@ function generateRandomNumber(min, max) {
 
 
 // change elements background color
-export function defaultElementsBackgroundColor(array) {
+export function setArrayElementsToDefault(array) {
     for (let i = 0; i < array.length; i++) {
-        const element = document.getElementById(`${array[i]}`)
-        element.style.backgroundColor = ''
+        const element = document.querySelectorAll(`.num-${array[i]}`)
+        setElementsToDefault(element)
+        // element.style.backgroundColor = ''
     }
 }
 
-export function giveElementsFindishedBackgroundColor(array) {
+export function setArrayElementsToFindished(array) {
     for (let i = 0; i < array.length; i++) {
-        const element = document.getElementById(`${array[i]}`)
-        element.style.backgroundColor = purple
+        const element = document.querySelectorAll(`.num-${array[i]}`)
+        setElementsToPurple(element)
+        // element.style.backgroundColor = purple
+    }
+}
+
+
+export function setElementsToGreen(elements) {
+    if (elements.length === 1) {
+        elements[0].style.backgroundColor = green
+    } else {
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].style.backgroundColor = green
+        }
+    }
+}
+
+export function setElementsToRed(elements) {
+    if (elements.length === 1) {
+        elements[0].style.backgroundColor = red
+    } else {
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].style.backgroundColor = red
+        }
+    }
+}
+
+export function setElementsToPurple(elements) {
+    if (elements.length === 1) {
+        elements[0].style.backgroundColor = purple
+    } else {
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].style.backgroundColor = purple
+        }
+    }
+}
+
+export function setElementsToYellow(elements) {
+    if (elements.length === 1) {
+        elements[0].style.backgroundColor = 'yellow'
+    } else {
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].style.backgroundColor = 'yellow'
+        }
+    }
+}
+
+export function setElementsToDefault(elements) {
+    if (elements.length === 1) {
+        elements[0].style.backgroundColor = ''
+    } else {
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].style.backgroundColor = ''
+        }
     }
 }
 

@@ -1,4 +1,9 @@
-import { delay, red, green } from "../utility";
+import { delay, red, green } from "../utility"
+import {
+    setElementsToGreen,
+    setElementsToRed,
+    setElementsToDefault
+} from "../utility"
 
 
 export async function mergeSort(indexArray, array, setArray, speed) {
@@ -18,19 +23,19 @@ export async function mergeSort(indexArray, array, setArray, speed) {
 export async function merge(leftIndexArray, rightIndexArray, array, setArray, speed) {
     for (let i = 0; i < leftIndexArray.length; i++) {
         for (let j = 0; j < rightIndexArray.length; j++) {
-            const leftIndex = leftIndexArray[i];
-            const rightIndex = rightIndexArray[j];
-            const firstElement = document.getElementById(`${array[leftIndex]}`);
-            const secondElement = document.getElementById(`${array[rightIndex]}`);
+            const leftIndex = leftIndexArray[i]
+            const rightIndex = rightIndexArray[j]
+            const firstElement = document.querySelectorAll(`.num-${array[leftIndex]}`)
+            const secondElement = document.querySelectorAll(`.num-${array[rightIndex]}`)
 
             if (firstElement && secondElement) {
-                firstElement.style.backgroundColor = green;
-                secondElement.style.backgroundColor = green;
+                setElementsToGreen(firstElement)
+                setElementsToGreen(secondElement)
                 await delay(speed);
 
                 if (array[leftIndex] > array[rightIndex]) {
-                    firstElement.style.backgroundColor = red;
-                    secondElement.style.backgroundColor = red;
+                    setElementsToRed(firstElement)
+                    setElementsToRed(secondElement)
                     await delay(speed);
 
                     // swap
@@ -44,13 +49,12 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
                     }
                     await delay(speed);
 
-                    firstElement.style.backgroundColor = green;
-                    secondElement.style.backgroundColor = green;
+                    setElementsToGreen(firstElement)
+                    setElementsToGreen(secondElement)
                     await delay(speed);
                 }
-
-                secondElement.style.backgroundColor = '';
-                firstElement.style.backgroundColor = '';
+                setElementsToDefault(firstElement)
+                setElementsToDefault(secondElement)
             }
         }
     }
@@ -61,15 +65,15 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
             for (let j = i; j < rightIndexArray.length; j++) {
                 const leftIndex = rightIndexArray[i];
                 const rightIndex = rightIndexArray[j]
-                const firstElement = document.getElementById(`${array[leftIndex]}`)
-                const secondElement = document.getElementById(`${array[rightIndex]}`)
+                const firstElement = document.querySelectorAll(`.num-${array[leftIndex]}`)
+                const secondElement = document.querySelectorAll(`.num-${array[rightIndex]}`)
                 if (firstElement && secondElement) {
-                    firstElement.style.backgroundColor = green;
-                    secondElement.style.backgroundColor = green;
+                    setElementsToGreen(firstElement)
+                    setElementsToGreen(secondElement)
                     await delay(speed)
                     if (array[leftIndex] > array[rightIndex]) {
-                        firstElement.style.backgroundColor = red;
-                        secondElement.style.backgroundColor = red;
+                        setElementsToRed(firstElement)
+                        setElementsToRed(secondElement)
                         await delay(speed)
                         // swap
                         const temp = array[leftIndex];
@@ -79,12 +83,12 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
 
                         await delay(speed);
 
-                        firstElement.style.backgroundColor = green;
-                        secondElement.style.backgroundColor = green;
+                        setElementsToGreen(firstElement)
+                        setElementsToGreen(secondElement)
                         await delay(speed)
                     }
-                    firstElement.style.backgroundColor = '';
-                    secondElement.style.backgroundColor = '';
+                    setElementsToDefault(firstElement)
+                    setElementsToDefault(secondElement)
                 }
             }
         }

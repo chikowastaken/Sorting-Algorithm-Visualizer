@@ -11,17 +11,17 @@ import {
     SliderMark
 } from '@chakra-ui/react'
 import './Main.css'
-import { mergeSort, merge, delay, checkIfBreak } from '../algorithms/mergeSort'
+import { mergeSort } from '../algorithms/mergeSort'
 import {
     getBoxHeight,
     getBoxWidth,
     getFonSize,
     generateNewArray,
-    defaultElementsBackgroundColor,
-    giveElementsFindishedBackgroundColor
+    setArrayElementsToDefault,
+    setArrayElementsToFindished,
 } from '../utility'
 import { bubbleSort } from '../algorithms/bubbleSort'
-
+import { quickSortHelper } from '../algorithms/quickSort'
 
 
 export default function Main() {
@@ -31,9 +31,11 @@ export default function Main() {
     const minArraySize = 4
     const maxArraySize = 170
     const numberFrom = 10
-    const numberTo = 150
-    const speed = 300 - Math.pow(array.length, 2) > 0 ?
-        300 - Math.pow(array.length, 2) : 0
+    const numberTo = 200
+    const speed = 500 - Math.pow(array.length, 2) > 0 ?
+        500 - Math.pow(array.length, 2) : 0
+
+
 
     const boxesGap = {
         gap: `${array.length < 5 ?
@@ -63,13 +65,13 @@ export default function Main() {
         const arr = generateNewArray(sliderValue, numberFrom, numberTo)
         console.log(sliderValue)
         setArray(arr)
-        defaultElementsBackgroundColor(array)
+        setArrayElementsToDefault(array)
     }, [sliderValue])
 
     // btn clicked
     function handleSort() {
-        defaultElementsBackgroundColor(array)
-        
+        setArrayElementsToDefault(array)
+
         if (tabIndex === 0) {
             console.log('mergeSort')
             // mergeSort
@@ -78,18 +80,20 @@ export default function Main() {
                 indexArray.push(i)
             }
             mergeSort(indexArray, array, setArray, speed).then(() => {
-                giveElementsFindishedBackgroundColor(array)
+                setArrayElementsToFindished(array)
             })
+        } else if (tabIndex === 1) {
+            quickSortHelper(array, setArray, 0, array.length - 1, 40)
         } else if (tabIndex === 3) {
             bubbleSort(array, setArray, speed).then(() => {
-                giveElementsFindishedBackgroundColor(array)
+                setArrayElementsToFindished(array)
             })
         }
     }
 
 
     function generateArray() {
-        defaultElementsBackgroundColor(array)
+        setArrayElementsToDefault(array)
         const arr = generateNewArray(sliderValue, numberFrom, numberTo)
         setArray(arr)
     }
@@ -103,7 +107,7 @@ export default function Main() {
     // array elements
     const arrayElements = array.map((num, index) => (
         <div
-            className={`box ${num}`}
+            className={`box num-${num}`}
             key={index}
             style={{
                 height: getBoxHeight(num),
