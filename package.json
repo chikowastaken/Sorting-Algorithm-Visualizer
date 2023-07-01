@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "cloc": "^1.96.0-cloc",
     "gh-pages": "^5.0.0"
   }
 }

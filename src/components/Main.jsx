@@ -21,7 +21,7 @@ import {
     setArrayElementsToFindished,
 } from '../utility'
 import { bubbleSort } from '../algorithms/bubbleSort'
-import { quickSortHelper } from '../algorithms/quickSort'
+import { quickSort } from '../algorithms/quickSort'
 
 
 export default function Main() {
@@ -83,7 +83,7 @@ export default function Main() {
                 setArrayElementsToFindished(array)
             })
         } else if (tabIndex === 1) {
-            quickSortHelper(array, setArray, 0, array.length - 1, 40)
+            quickSort(array, setArray, 0, array.length - 1, 30)
         } else if (tabIndex === 3) {
             bubbleSort(array, setArray, speed).then(() => {
                 setArrayElementsToFindished(array)

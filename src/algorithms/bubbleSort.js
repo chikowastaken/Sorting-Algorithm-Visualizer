@@ -34,5 +34,4 @@ export async function bubbleSort(array, setArray, speed) {
             setElementsToDefault(secondElem)
         }
     }
-
 }
