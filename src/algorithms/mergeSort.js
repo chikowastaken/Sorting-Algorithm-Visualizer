@@ -31,28 +31,29 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
             if (firstElement && secondElement) {
                 setElementsToGreen(firstElement)
                 setElementsToGreen(secondElement)
-                await delay(speed);
+                await delay(speed)
 
                 if (array[leftIndex] > array[rightIndex]) {
                     setElementsToRed(firstElement)
                     setElementsToRed(secondElement)
-                    await delay(speed);
+                    await delay(speed)
 
                     // swap
-                    const temp = array[leftIndex];
-                    array[leftIndex] = array[rightIndex];
-                    array[rightIndex] = temp;
+                    const temp = array[leftIndex]
+                    array[leftIndex] = array[rightIndex]
+                    array[rightIndex] = temp
                     setArray([...array])
 
                     if (checkIfBreak(rightIndexArray, rightIndex, array)) {
                         j = rightIndexArray.length
                     }
-                    await delay(speed);
+                    await delay(speed)
 
                     setElementsToGreen(firstElement)
                     setElementsToGreen(secondElement)
-                    await delay(speed);
-                }
+                    await delay(speed)
+                } 
+                
                 setElementsToDefault(firstElement)
                 setElementsToDefault(secondElement)
             }
@@ -60,7 +61,6 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
     }
 
     if (rightIndexArray.length > 1) {
-        console.log('shemo')
         for (let i = 0; i < rightIndexArray.length; i++) {
             for (let j = i; j < rightIndexArray.length; j++) {
                 const leftIndex = rightIndexArray[i];
@@ -71,17 +71,18 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
                     setElementsToGreen(firstElement)
                     setElementsToGreen(secondElement)
                     await delay(speed)
+
                     if (array[leftIndex] > array[rightIndex]) {
                         setElementsToRed(firstElement)
                         setElementsToRed(secondElement)
                         await delay(speed)
                         // swap
-                        const temp = array[leftIndex];
-                        array[leftIndex] = array[rightIndex];
-                        array[rightIndex] = temp;
+                        const temp = array[leftIndex]
+                        array[leftIndex] = array[rightIndex]
+                        array[rightIndex] = temp
                         setArray([...array])
 
-                        await delay(speed);
+                        await delay(speed)
 
                         setElementsToGreen(firstElement)
                         setElementsToGreen(secondElement)
@@ -89,7 +90,7 @@ export async function merge(leftIndexArray, rightIndexArray, array, setArray, sp
                     }
                     setElementsToDefault(firstElement)
                     setElementsToDefault(secondElement)
-                }
+                } 
             }
         }
     }
@@ -106,3 +107,4 @@ export function checkIfBreak(indexArray, index, array) {
     }
     return true
 }
+
