@@ -11,7 +11,6 @@ import {
     SliderMark
 } from '@chakra-ui/react'
 import './Main.css'
-import { mergeSort } from '../algorithms/mergeSort'
 import {
     getBoxHeight,
     getBoxWidth,
@@ -20,8 +19,10 @@ import {
     setArrayElementsToDefault,
     setArrayElementsToFindished,
 } from '../utility'
+import { mergeSort } from '../algorithms/mergeSort'
 import { bubbleSort } from '../algorithms/bubbleSort'
 import { quickSort } from '../algorithms/quickSort'
+import { heapsort } from '../algorithms/heapSort'
 
 
 export default function Main() {
@@ -84,6 +85,8 @@ export default function Main() {
             })
         } else if (tabIndex === 1) {
             quickSort(array, setArray, 0, array.length - 1, 30)
+        } else if (tabIndex === 2) {
+            heapsort(array, setArray, speed)
         } else if (tabIndex === 3) {
             bubbleSort(array, setArray, speed).then(() => {
                 setArrayElementsToFindished(array)
