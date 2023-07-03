@@ -1,29 +1,41 @@
+import {
+    setElementsToGreen,
+    setElementsToRed,
+    setElementsToDefault,
+    setElementsToPurple,
+    delay
+} from "../utility"
+
 var array = [2, 8, 5, 3, 9, 1]
 
-function heapsort(array) {
+export async function heapsort(array, setArray, speed) {
+    console.log(array)
+    console.log('came here')
     const n = array.length
 
     // Build a max heap
-    buildMaxHeap(array)
+    await buildMaxHeap(array, setArray, speed)
 
     // Perform heap sort
     for (let i = n - 1; i > 0; i--) {
-        swap(array, 0, i)
-        heapify(array, i, 0)
+        await swap(array, setArray, 0, i, speed)
+        const lastElement = document.querySelectorAll(`.num-${array[i]}`)
+        setElementsToPurple(lastElement)
+        await heapify(array, setArray, i, 0, speed)
     }
 
-    return array;
+    const firstElement = document.querySelectorAll(`.num-${array[0]}`)
+    setElementsToPurple(firstElement)
 }
 
-function buildMaxHeap(array) {
+async function buildMaxHeap(array, setArray, speed) {
     const n = array.length;
     for (let i = Math.floor(n / 2); i >= 0; i--) {
-        heapify(array, n, i)
+        await heapify(array, setArray, n, i, speed)
     }
-    
 }
 
-function heapify(array, n, i) {
+async function heapify(array, setArray, n, i, speed) {
     let largest = i;
     const left = 2 * i + 1
     const right = 2 * i + 2
@@ -37,13 +49,38 @@ function heapify(array, n, i) {
     }
 
     if (largest !== i) {
-        swap(array, i, largest)
-        heapify(array, n, largest)
+        await swap(array, setArray, i, largest, speed)
+        await heapify(array, setArray, n, largest, speed)
     }
 }
 
-function swap(array, i, j) {
+async function swap(array, setArray, i, j, speed) {
+    console.log('swap')
+    const firstElement = document.querySelectorAll(`.num-${array[i]}`)
+    const secondElement = document.querySelectorAll(`.num-${array[j]}`)
+
+    setElementsToGreen(firstElement)
+    setElementsToGreen(secondElement)
+    await delay(speed)
+
+    setElementsToRed(firstElement)
+    setElementsToRed(secondElement)
+    await delay(speed)
+
+    
+    console.log(`swapping ${i} to ${j}`)
+    console.log('before: ' + array)
     const temp = array[i]
     array[i] = array[j]
     array[j] = temp
+    setArray([...array])
+    console.log('after: ' + array)
+
+    setElementsToGreen(firstElement)
+    setElementsToGreen(secondElement)
+    await delay(speed)
+
+    setElementsToDefault(firstElement)
+    setElementsToDefault(secondElement)
+    await delay(speed)
 }
