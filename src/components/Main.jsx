@@ -30,12 +30,14 @@ export default function Main() {
     const [sliderValue, setSliderValue] = useState(100); // Initial value of the slider
     const [tabIndex, setTabIndex] = useState(0)
     const [array, setArray] = useState([])
+    const [inProcess, setInProcess] = useState(false)
     const minArraySize = 4
     const maxArraySize = 160
     const numberFrom = 10
     const numberTo = 200
     const speed = 500 - Math.pow(array.length, 2) > 0 ?
         500 - Math.pow(array.length, 2) : 0
+
 
 
 
@@ -68,6 +70,7 @@ export default function Main() {
     // btn clicked
     function handleSort() {
         setArrayElementsToDefault(array)
+        setInProcess(!inProcess)
 
         if (tabIndex === 0) {
             console.log('mergeSort')
@@ -92,6 +95,7 @@ export default function Main() {
     }
 
     function generateArray() {
+        console.log('new array')
         setArrayElementsToDefault(array)
         const arr = generateNewArray(sliderValue, numberFrom, numberTo)
         setArray(arr)
@@ -122,12 +126,15 @@ export default function Main() {
     return (
         <div>
             <div className="header">
-                <button className='generate-new-array-p'
+                <button
+                    className={`generate-new-array-p ${inProcess ? 'disabled' : ''}`}
                     onClick={generateArray}
                 >Generate New Array</button>
 
                 <div className='slider'>
-                    <p>Change Array Size & Sorting Speed</p>
+                    <p
+                        className={`${inProcess ? 'disabled' : ''}`}
+                    >Change Array Size & Sorting Speed</p>
                     <Slider
                         aria-label='slider-ex-1'
                         defaultValue={sliderValue}
@@ -136,6 +143,7 @@ export default function Main() {
                         min={minArraySize}
                         max={maxArraySize}
                         step={step()}
+                        className={`${inProcess ? 'disabled' : ''}`}
                     >
                         <SliderTrack>
                             <SliderFilledTrack />
@@ -147,10 +155,10 @@ export default function Main() {
                 <div className="tabs">
                     <Tabs onChange={handleTabChange}>
                         <TabList>
-                            <Tab>Merge Sort</Tab>
-                            <Tab>Quick Sort</Tab>
-                            <Tab>Heap Sort</Tab>
-                            <Tab>Bubble Sort</Tab>
+                            <Tab className={`${inProcess ? 'disabled' : ''}`}>Merge Sort</Tab>
+                            <Tab className={`${inProcess ? 'disabled' : ''}`}>Quick Sort</Tab>
+                            <Tab className={`${inProcess ? 'disabled' : ''}`}>Heap Sort</Tab>
+                            <Tab className={`${inProcess ? 'disabled' : ''}`}>Bubble Sort</Tab>
                         </TabList>
                     </Tabs>
                 </div>

@@ -24,3 +24,8 @@
     gap: 20px;
     cursor: default;
 }
+
+.disabled {
+    color: red;
+    pointer-events: none;
+}
