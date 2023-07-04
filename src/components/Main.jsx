@@ -19,10 +19,11 @@ import {
     setArrayElementsToDefault,
     setArrayElementsToFindished,
 } from '../utility'
-import { mergeSort } from '../algorithms/mergeSort'
+// import { mergeSort } from '../algorithms/mergeSort'
 import { bubbleSort } from '../algorithms/bubbleSort'
 import { quickSort } from '../algorithms/quickSort'
 import { heapsort } from '../algorithms/heapSort'
+import { mergeSort } from '../algorithms/mergeSort'
 
 
 export default function Main() {
@@ -30,7 +31,7 @@ export default function Main() {
     const [tabIndex, setTabIndex] = useState(0)
     const [array, setArray] = useState([])
     const minArraySize = 4
-    const maxArraySize = 170
+    const maxArraySize = 160
     const numberFrom = 10
     const numberTo = 200
     const speed = 500 - Math.pow(array.length, 2) > 0 ?
@@ -58,11 +59,6 @@ export default function Main() {
     }
 
     useEffect(() => {
-        console.log(tabIndex)
-    }, [tabIndex])
-
-    useEffect(() => {
-
         const arr = generateNewArray(sliderValue, numberFrom, numberTo)
         console.log(sliderValue)
         setArray(arr)
@@ -80,7 +76,8 @@ export default function Main() {
             for (let i = 0; i < array.length; i++) {
                 indexArray.push(i)
             }
-            mergeSort(indexArray, array, setArray, speed).then(() => {
+
+            mergeSort(array, setArray, 0, array.length - 1, speed).then(() => {
                 setArrayElementsToFindished(array)
             })
         } else if (tabIndex === 1) {
@@ -93,7 +90,6 @@ export default function Main() {
             })
         }
     }
-
 
     function generateArray() {
         setArrayElementsToDefault(array)

@@ -33,10 +33,24 @@ export async function delay(ms) {
 // generate new array on slider change
 export function generateNewArray(val, from, to) {
     const newArray = []
-    for (let i = 0; i < val; i++) {
-        newArray.push(generateRandomNumber(from, to))
+    const range = to - from + 1;
+    const uniqueSet = new Set();
+
+    while (newArray.length < val) {
+        const randomNum = Math.floor(Math.random() * range) + from;
+        if (!uniqueSet.has(randomNum)) {
+            newArray.push(randomNum)
+            uniqueSet.add(randomNum)
+        }
     }
+
     return newArray
+    
+    // const newArray = []
+    // for (let i = 0; i < val; i++) {
+    //     newArray.push(generateRandomNumber(from, to))
+    // }
+    // return newArray
 }
 
 function generateRandomNumber(min, max) {
