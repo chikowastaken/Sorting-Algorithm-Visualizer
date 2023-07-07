@@ -6,12 +6,12 @@ function App() {
   return (
     <div>
       <ChakraProvider>
-        <div class="bg"></div>
+        <div className="bg"></div>
         
-        <div class="star-field">
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
+        <div className="star-field">
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
         </div>
         <Main />
       </ChakraProvider>

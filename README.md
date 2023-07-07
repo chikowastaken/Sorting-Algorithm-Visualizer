@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Sorting Algorithm Visualizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![](https://iili.io/HsKR7lp.png)
 
-## Available Scripts
 
-In the project directory, you can run:
+## Short Description 📋
 
-### `npm start`
+This project is a sorting algorithm visualizer built using React and Chakra UI. It allows you to visualize the step-by-step execution of various sorting algorithms such as Merge Sort, Quick Sort, Heap Sort, and Bubble Sort.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Demo
+🖥 [Live Demo](-----Link-----)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## What Did I Learn: 📚
+1. **Algorithmic Thinking:** During the implementation of sorting algorithms, I developed the ability to break down complex tasks into smaller, logical steps. This honed my skills in algorithmic thinking and provided me with a deeper understanding of how algorithms solve specific problems.
 
-### `npm test`
+2. **Visualization Techniques:**  Creating visualizations for the sorting algorithms improved my skills in representing complex processes in a simplified and understandable manner. I learned how to visually communicate important steps and transitions, enhancing user comprehension.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Modularity and Reusability:** I discovered the importance of writing sorting algorithms in a modular and reusable manner. By structuring code into functions, utilizing helper functions, and separating concerns, I improved code organization and maintainability. This approach promotes code reusability and facilitates integration into different projects.
 
-### `npm run build`
+4. **Understanding Sorting Algorithms:** Through implementing and visualizing sorting algorithms like Merge Sort, Quick Sort, Heap Sort, and Bubble Sort, I deepened my understanding of their underlying principles and approaches to sorting data.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Overall, these learnings have expanded my knowledge in algorithmic thinking, visualization techniques, modularity, and the workings of different sorting algorithms.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Features ✨
+- Generate a new array of random numbers
+- Adjust the array size and sorting speed using the slider
+- Select different sorting algorithms using tabs
+- Visualize the sorting process in real-time
+- Disable user interaction during the sorting process
+- Display the sorted array at the end of the sorting process
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Code Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The project's code is organized into the following main files:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Main.js: This file contains the main component of the application. It handles the rendering of the UI elements, user interactions, and calling the sorting algorithms based on the selected tab.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- MergeSort.js, QuickSort.js, HeapSort.js, BubbleSort.js: These files contain the implementations of the respective sorting algorithms. They provide functions for sorting the array and updating the state to visualize the sorting process.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- utility.js: This file contains utility functions used in the project, such as generating a new array, setting array element colors, calculating box dimensions, and delay functions.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Installation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To run the Sorting Algorithm Visualizer locally, follow these steps:
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Clone the repository:
 
-### Analyzing the Bundle Size
+   ```bash
+   git clone <repository-url>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. Navigate to the project directory:
 
-### Making a Progressive Web App
+   ```bash
+   cd sorting-algorithm-visualizer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. Install the dependencies:
 
-### Advanced Configuration
+   ```bash
+   npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4. Start the development server:
 
-### Deployment
+   ```bash
+   npm start
+5. Open your browser and visit `http://localhost:3000` to see the application running.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+### Background Design 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The background design used in this project was inspired by the following CodePen:
+
+- [Background Design on CodePen](https://codepen.io/stack-findover/pen/eYWPwPV)
+
+
+## Motivation
+
+I undertook the Sorting Visualization Algorithm project driven by a strong curiosity and fascination with sorting algorithms. Through visual representations, I aimed to deepen my understanding, provide a valuable learning resource, and sharpen my skills in algorithmic thinking, problem-solving, and software development.

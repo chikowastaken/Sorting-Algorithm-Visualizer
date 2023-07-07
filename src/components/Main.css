@@ -1,12 +1,6 @@
-
-
 .header {
     height: 100px;
-    /* background-color: cornflowerblue; */
     background: radial-gradient(circle, #1f4f96, #1b2949, #000);
-    /* background: radial-gradient(circle, #0077ea, #1f4f96, #1b2949, #000); */
-    /* background: radial-gradient(circle, #0077ea, #1f4f96, #1b2949); */
-    /* background: radial-gradient(circle, cornflowerblue, #0077ea, #1f4f96); */
     padding: 20px 30px;
     display: flex;
     justify-content: space-between;
@@ -30,10 +24,6 @@
 }
 
 .disabled {
-    /* color: #b87fff; */
+    color: #b87fff;
     pointer-events: none;
-}
-
-.purple {
-    color: #965ae1;
 }

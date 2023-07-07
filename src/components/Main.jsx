@@ -20,7 +20,6 @@ import {
     setArrayElementsToFindished,
     purple
 } from '../utility/utility'
-// import { mergeSort } from '../algorithms/mergeSort'
 import { bubbleSort } from '../algorithms/bubbleSort'
 import { quickSort } from '../algorithms/quickSort'
 import { heapsort } from '../algorithms/heapSort'
@@ -38,11 +37,6 @@ export default function Main() {
     const numberTo = 200
     const speed = 500 - Math.pow(array.length, 2) > 0 ?
         500 - Math.pow(array.length, 2) : 0
-
-
-    useEffect(() => {
-        console.log(inProcess)
-    }, [inProcess])
 
 
 
@@ -67,7 +61,6 @@ export default function Main() {
 
     useEffect(() => {
         const arr = generateNewArray(sliderValue, numberFrom, numberTo)
-        console.log(sliderValue)
         setArray(arr)
         setArrayElementsToDefault(array)
     }, [sliderValue])
@@ -78,8 +71,6 @@ export default function Main() {
         setInProcess(true)
 
         if (tabIndex === 0) {
-            console.log('mergeSort')
-            // mergeSort
             const indexArray = []
             for (let i = 0; i < array.length; i++) {
                 indexArray.push(i)
@@ -141,13 +132,13 @@ export default function Main() {
         <div>
             <div className="header">
                 <button
-                    className={`generate-new-array-p ${inProcess ? 'disabled' : 'purple'}`}
+                    className={`generate-new-array-p ${inProcess ? 'disabled' : ''}`}
                     onClick={generateArray}
                 >Generate New Array</button>
 
                 <div className='slider'>
                     <p
-                        className={`${inProcess ? 'disabled' : 'purple'}`}
+                        className={`${inProcess ? 'disabled' : ''}`}
                     >Change Array Size & Sorting Speed</p>
                     <Slider
                         aria-label='slider-ex-1'
@@ -158,7 +149,7 @@ export default function Main() {
                         max={maxArraySize}
                         step={step()}
                         className={`${inProcess ? 'disabled' : ''}`}
-                        colorScheme={inProcess ? 'blue' : 'purple'}
+                        colorScheme={inProcess ? 'purple' : 'blue'}
                     >
                         <SliderTrack>
                             <SliderFilledTrack />
@@ -188,14 +179,13 @@ export default function Main() {
                             ml='-0.28px'
                             height="2px"
                             bg="#965ae1"
-                        // borderRadius="1px"
                         />
                     </Tabs>
                 </div>
 
                 <Button
                     className={`${inProcess ? 'disabled' : ''}`}
-                    colorScheme={inProcess ? 'blue' : 'purple'}
+                    colorScheme={inProcess ? 'purple' : 'blue'}
                     onClick={handleSort}
                 >Sort</Button>
             </div>
