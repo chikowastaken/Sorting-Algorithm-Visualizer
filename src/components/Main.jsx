@@ -8,7 +8,7 @@ import {
     SliderTrack,
     SliderFilledTrack,
     SliderThumb,
-    SliderMark
+    TabIndicator
 } from '@chakra-ui/react'
 import './Main.css'
 import {
@@ -18,6 +18,7 @@ import {
     generateNewArray,
     setArrayElementsToDefault,
     setArrayElementsToFindished,
+    purple
 } from '../utility'
 // import { mergeSort } from '../algorithms/mergeSort'
 import { bubbleSort } from '../algorithms/bubbleSort'
@@ -123,6 +124,8 @@ export default function Main() {
         </div>
     ))
 
+
+
     return (
         <div>
             <div className="header">
@@ -153,17 +156,34 @@ export default function Main() {
                 </div>
 
                 <div className="tabs">
-                    <Tabs onChange={handleTabChange}>
+                    <Tabs onChange={handleTabChange} >
                         <TabList>
-                            <Tab className={`${inProcess ? 'disabled' : ''}`}>Merge Sort</Tab>
-                            <Tab className={`${inProcess ? 'disabled' : ''}`}>Quick Sort</Tab>
-                            <Tab className={`${inProcess ? 'disabled' : ''}`}>Heap Sort</Tab>
-                            <Tab className={`${inProcess ? 'disabled' : ''}`}>Bubble Sort</Tab>
+                            <Tab
+                                _selected={{ color: '#965ae1' }}
+                                className={`${inProcess ? 'disabled' : ''}`}>Merge Sort</Tab>
+                            <Tab
+                                _selected={{ color: '#965ae1' }}
+                                className={`${inProcess ? 'disabled' : ''}`}>Quick Sort</Tab>
+                            <Tab
+                                _selected={{ color: '#965ae1' }}
+                                className={`${inProcess ? 'disabled' : ''}`}>Heap Sort</Tab>
+                            <Tab
+                                _selected={{ color: '#965ae1' }}
+                                className={`${inProcess ? 'disabled' : ''}`}>Bubble Sort</Tab>
                         </TabList>
+                        <TabIndicator
+                            mt="-2px"
+                            ml='-0.28px'
+                            height="2px"
+                            bg="#965ae1"
+                            // borderRadius="1px"
+                        />
                     </Tabs>
                 </div>
 
-                <Button colorScheme='blue'
+                <Button
+                    className={`${inProcess ? 'disabled' : ''}`}
+                    colorScheme='blue'
                     onClick={handleSort}
                 >Sort</Button>
             </div>
@@ -173,7 +193,7 @@ export default function Main() {
                     {arrayElements}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

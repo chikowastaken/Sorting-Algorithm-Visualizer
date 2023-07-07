@@ -34,7 +34,8 @@ async function merge(array, setArray, l, m, r, speed) {
         const secondElement = document.querySelectorAll(`.num-${array[i]}`)
         setElementsToGreen(firstElement)
         setElementsToRed(secondElement)
-
+        
+        await delay(speed)
 
         if (array[j] > array[i]) i++
         else {

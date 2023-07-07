@@ -1,7 +1,10 @@
 .header {
     height: 100px;
-    /* background-color: rgb(249, 119, 71); */
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
+    background: radial-gradient(circle, #1f4f96, #1b2949, #000);
+    /* background: radial-gradient(circle, #0077ea, #1f4f96, #1b2949, #000); */
+    /* background: radial-gradient(circle, #0077ea, #1f4f96, #1b2949); */
+    /* background: radial-gradient(circle, cornflowerblue, #0077ea, #1f4f96); */
     padding: 20px 30px;
     display: flex;
     justify-content: space-between;
@@ -12,7 +15,6 @@
     cursor: pointer;
     transition: 0.2s;
 }
-
 .generate-new-array-p:hover {
     color: #ccc;
 }
@@ -26,6 +28,7 @@
 }
 
 .disabled {
-    color: red;
+    color: #965ae1;
+    /* color: #b87fff; */
     pointer-events: none;
 }
