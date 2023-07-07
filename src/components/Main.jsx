@@ -19,7 +19,7 @@ import {
     setArrayElementsToDefault,
     setArrayElementsToFindished,
     purple
-} from '../utility'
+} from '../utility/utility'
 // import { mergeSort } from '../algorithms/mergeSort'
 import { bubbleSort } from '../algorithms/bubbleSort'
 import { quickSort } from '../algorithms/quickSort'
@@ -39,6 +39,10 @@ export default function Main() {
     const speed = 500 - Math.pow(array.length, 2) > 0 ?
         500 - Math.pow(array.length, 2) : 0
 
+
+    useEffect(() => {
+        console.log(inProcess)
+    }, [inProcess])
 
 
 
@@ -71,7 +75,7 @@ export default function Main() {
     // btn clicked
     function handleSort() {
         setArrayElementsToDefault(array)
-        setInProcess(!inProcess)
+        setInProcess(true)
 
         if (tabIndex === 0) {
             console.log('mergeSort')
@@ -83,16 +87,23 @@ export default function Main() {
 
             mergeSort(array, setArray, 0, array.length - 1, speed).then(() => {
                 setArrayElementsToFindished(array)
+                setInProcess(false)
             })
         } else if (tabIndex === 1) {
-            quickSort(array, setArray, 0, array.length - 1, 30)
+            quickSort(array, setArray, 0, array.length - 1, 30).then(() => {
+                setInProcess(false)
+            })
         } else if (tabIndex === 2) {
-            heapsort(array, setArray, speed)
+            heapsort(array, setArray, speed).then(() => {
+                setInProcess(false)
+            })
         } else if (tabIndex === 3) {
             bubbleSort(array, setArray, speed).then(() => {
                 setArrayElementsToFindished(array)
+                setInProcess(false)
             })
         }
+
     }
 
     function generateArray() {
@@ -130,13 +141,13 @@ export default function Main() {
         <div>
             <div className="header">
                 <button
-                    className={`generate-new-array-p ${inProcess ? 'disabled' : ''}`}
+                    className={`generate-new-array-p ${inProcess ? 'disabled' : 'purple'}`}
                     onClick={generateArray}
                 >Generate New Array</button>
 
                 <div className='slider'>
                     <p
-                        className={`${inProcess ? 'disabled' : ''}`}
+                        className={`${inProcess ? 'disabled' : 'purple'}`}
                     >Change Array Size & Sorting Speed</p>
                     <Slider
                         aria-label='slider-ex-1'
@@ -147,6 +158,7 @@ export default function Main() {
                         max={maxArraySize}
                         step={step()}
                         className={`${inProcess ? 'disabled' : ''}`}
+                        colorScheme={inProcess ? 'blue' : 'purple'}
                     >
                         <SliderTrack>
                             <SliderFilledTrack />
@@ -159,16 +171,16 @@ export default function Main() {
                     <Tabs onChange={handleTabChange} >
                         <TabList>
                             <Tab
-                                _selected={{ color: '#965ae1' }}
+                                _selected={{ color: purple }}
                                 className={`${inProcess ? 'disabled' : ''}`}>Merge Sort</Tab>
                             <Tab
-                                _selected={{ color: '#965ae1' }}
+                                _selected={{ color: purple }}
                                 className={`${inProcess ? 'disabled' : ''}`}>Quick Sort</Tab>
                             <Tab
-                                _selected={{ color: '#965ae1' }}
+                                _selected={{ color: purple }}
                                 className={`${inProcess ? 'disabled' : ''}`}>Heap Sort</Tab>
                             <Tab
-                                _selected={{ color: '#965ae1' }}
+                                _selected={{ color: purple }}
                                 className={`${inProcess ? 'disabled' : ''}`}>Bubble Sort</Tab>
                         </TabList>
                         <TabIndicator
@@ -176,14 +188,14 @@ export default function Main() {
                             ml='-0.28px'
                             height="2px"
                             bg="#965ae1"
-                            // borderRadius="1px"
+                        // borderRadius="1px"
                         />
                     </Tabs>
                 </div>
 
                 <Button
                     className={`${inProcess ? 'disabled' : ''}`}
-                    colorScheme='blue'
+                    colorScheme={inProcess ? 'blue' : 'purple'}
                     onClick={handleSort}
                 >Sort</Button>
             </div>

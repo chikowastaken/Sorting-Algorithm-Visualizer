@@ -1,11 +1,11 @@
-import { delay } from '../utility'
+import { delay } from '../utility/utility'
 import {
     setElementsToGreen,
     setElementsToRed,
     setElementsToPurple,
     setElementsToYellow,
     setElementsToDefault
-} from '../utility'
+} from '../utility/utility'
 
 function isSortedUntilIndex(array, index) {
     for (let i = 1; i <= index; i++) {

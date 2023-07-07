@@ -1,10 +1,9 @@
-import { delay, setElementsToPurple } from "../utility"
+import { delay, setElementsToPurple } from "../utility/utility"
 import {
     setElementsToGreen,
     setElementsToRed,
     setElementsToDefault
-} from "../utility"
-
+} from "../utility/utility"
 
 export async function bubbleSort(array, setArray, speed) {
     for (let i = 0; i < array.length - 1; i++) {

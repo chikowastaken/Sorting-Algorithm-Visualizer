@@ -1,3 +1,5 @@
+
+
 .header {
     height: 100px;
     /* background-color: cornflowerblue; */
@@ -28,7 +30,10 @@
 }
 
 .disabled {
-    color: #965ae1;
     /* color: #b87fff; */
     pointer-events: none;
+}
+
+.purple {
+    color: #965ae1;
 }

@@ -4,7 +4,7 @@ import {
     setElementsToDefault,
     setElementsToPurple,
     delay
-} from "../utility"
+} from "../utility/utility"
 
 var array = [2, 8, 5, 3, 9, 1]
 

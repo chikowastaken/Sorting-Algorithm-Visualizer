@@ -3,7 +3,7 @@ import {
     setElementsToDefault,
     setElementsToGreen,
     setElementsToRed
-} from "../utility";
+} from "../utility/utility";
 
 function slideDown(array, setArray, l, r, speed) {
     let temp = array[r]
