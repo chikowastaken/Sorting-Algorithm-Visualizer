@@ -45,26 +45,13 @@ export function generateNewArray(val, from, to) {
     }
 
     return newArray
-    
-    // const newArray = []
-    // for (let i = 0; i < val; i++) {
-    //     newArray.push(generateRandomNumber(from, to))
-    // }
-    // return newArray
 }
-
-function generateRandomNumber(min, max) {
-    const num = Math.floor(Math.random() * (max - min + 1)) + min;
-    return num
-}
-
 
 // change elements background color
 export function setArrayElementsToDefault(array) {
     for (let i = 0; i < array.length; i++) {
         const element = document.querySelectorAll(`.num-${array[i]}`)
         setElementsToDefault(element)
-        // element.style.backgroundColor = ''
     }
 }
 
@@ -72,7 +59,6 @@ export function setArrayElementsToFindished(array) {
     for (let i = 0; i < array.length; i++) {
         const element = document.querySelectorAll(`.num-${array[i]}`)
         setElementsToPurple(element)
-        // element.style.backgroundColor = purple
     }
 }
 
