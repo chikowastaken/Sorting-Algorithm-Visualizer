@@ -8,7 +8,7 @@
 This project is a sorting algorithm visualizer built using React and Chakra UI. It allows you to visualize the step-by-step execution of various sorting algorithms such as Merge Sort, Quick Sort, Heap Sort, and Bubble Sort.
 
 ## Demo
-🖥 [Live Demo](https://sorting-algorithm-visulizer.netlify.app/)
+🖥 [Live Demo](https://sorting-algorithm-visulizer.netlify.app/){:target="_blank"}
 
 ## What Did I Learn: 📚
 1. **Algorithmic Thinking:** During the implementation of sorting algorithms, I developed the ability to break down complex tasks into smaller, logical steps. This honed my skills in algorithmic thinking and provided me with a deeper understanding of how algorithms solve specific problems.
