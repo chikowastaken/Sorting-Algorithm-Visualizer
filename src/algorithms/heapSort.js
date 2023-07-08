@@ -6,11 +6,7 @@ import {
     delay
 } from "../utility/utility"
 
-var array = [2, 8, 5, 3, 9, 1]
-
 export async function heapsort(array, setArray, speed) {
-    console.log(array)
-    console.log('came here')
     const n = array.length
 
     // Build a max heap
@@ -55,7 +51,6 @@ async function heapify(array, setArray, n, i, speed) {
 }
 
 async function swap(array, setArray, i, j, speed) {
-    console.log('swap')
     const firstElement = document.querySelectorAll(`.num-${array[i]}`)
     const secondElement = document.querySelectorAll(`.num-${array[j]}`)
 
@@ -68,13 +63,10 @@ async function swap(array, setArray, i, j, speed) {
     await delay(speed)
 
     
-    console.log(`swapping ${i} to ${j}`)
-    console.log('before: ' + array)
     const temp = array[i]
     array[i] = array[j]
     array[j] = temp
     setArray([...array])
-    console.log('after: ' + array)
 
     setElementsToGreen(firstElement)
     setElementsToGreen(secondElement)

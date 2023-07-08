@@ -25,20 +25,44 @@ export async function mergeSort(array, setArray, l, r, speed) {
 
 
 async function merge(array, setArray, l, m, r, speed) {
-    let y = l
     let i = l
     let j = m + 1
+
+    // while (i < j && j <= r) {
+    //     const firstElement = document.querySelectorAll(`.num-${array[j]}`)
+    //     const secondElement = document.querySelectorAll(`.num-${array[i]}`)
+    //     setElementsToGreen(firstElement)
+    //     setElementsToRed(secondElement)
+        
+    //     await delay(speed)
+
+    //     if (array[j] > array[i]) i++
+    //     else {
+    //         slideDown(array, setArray, i, j, speed)
+    //         i++
+    //         j++
+    //     }
+
+    //     await delay(speed)
+    //     setElementsToGreen(firstElement)
+    //     setElementsToRed(secondElement)
+    //     await delay(speed)
+    //     setElementsToDefault(firstElement)
+    //     setElementsToDefault(secondElement)
+    // }
 
     while (i < j && j <= r) {
         const firstElement = document.querySelectorAll(`.num-${array[j]}`)
         const secondElement = document.querySelectorAll(`.num-${array[i]}`)
         setElementsToGreen(firstElement)
-        setElementsToRed(secondElement)
-        
-        await delay(speed)
+        setElementsToGreen(secondElement)
 
+        
         if (array[j] > array[i]) i++
         else {
+            await delay(speed)
+            setElementsToRed(firstElement)
+            setElementsToRed(secondElement)
             slideDown(array, setArray, i, j, speed)
             i++
             j++
@@ -46,7 +70,7 @@ async function merge(array, setArray, l, m, r, speed) {
 
         await delay(speed)
         setElementsToGreen(firstElement)
-        setElementsToRed(secondElement)
+        setElementsToGreen(secondElement)
         await delay(speed)
         setElementsToDefault(firstElement)
         setElementsToDefault(secondElement)

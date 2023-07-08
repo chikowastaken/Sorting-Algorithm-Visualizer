@@ -4,45 +4,24 @@ import {
     setElementsToRed,
     setElementsToPurple,
     setElementsToYellow,
-    setElementsToDefault
+    setElementsToDefault,
+    isSorted
 } from '../utility/utility'
 
-function isSortedUntilIndex(array, index) {
-    for (let i = 1; i <= index; i++) {
-        if (array[i] < array[i - 1]) {
-            return false
-        }
+export async function quickSort(array, setArray, start, end, speed, setInProcess) {
+    let sortingComplete = false;
+
+    function finishSorting() {
+        sortingComplete = true;
     }
-    return true
-}
 
-function isSortedAfterIndex(array, index) {
-    for (let i = index + 1; i < array.length; i++) {
-        if (array[i] < array[i - 1]) {
-            return false
-        }
-    }
-    return true
-}
-
-function isSortedFromTo(array, from, to) {
-    for (let i = from + 1; i <= to; i++) {
-        if (array[i] < array[i - 1]) {
-            return false
-        }
-    }
-    return true
-}
-
-
-export async function quickSort(array, setArray, start, end, speed) {
     if (start >= end) {
         const pivotElem = document.querySelectorAll(`.num-${array[start]}`)
         setElementsToPurple(pivotElem)
         await delay(speed)
 
         // Highlight the numbers that are sorted before the pivot in purple
-        if (isSortedUntilIndex(array, start)) {
+        if (isSorted(array, 0, start)) {
             for (let i = start - 1; i >= 0; i--) {
                 const numElem = document.querySelectorAll(`.num-${array[i]}`);
                 setElementsToPurple(numElem)
@@ -50,7 +29,7 @@ export async function quickSort(array, setArray, start, end, speed) {
             }
         }
 
-        if (isSortedAfterIndex(array, start)) {
+        if (isSorted(array, start)) {
             for (let i = start; i < array.length; i++) {
                 const numElem = document.querySelectorAll(`.num-${array[i]}`);
                 setElementsToPurple(numElem)
@@ -58,7 +37,7 @@ export async function quickSort(array, setArray, start, end, speed) {
             }
         }
 
-        if (isSortedFromTo(array, start, end)) {
+        if (isSorted(array, start, end)) {
             for (let i = start; i <= end; i++) {
                 const numElem = document.querySelectorAll(`.num-${array[i]}`);
                 setElementsToPurple(numElem)
@@ -134,7 +113,6 @@ export async function quickSort(array, setArray, start, end, speed) {
         array[pivot] = temp
         setArray([...array])
 
-
         setElementsToGreen(pivotElem)
         setElementsToGreen(secondElem)
         await delay(speed)
@@ -146,6 +124,13 @@ export async function quickSort(array, setArray, start, end, speed) {
     setElementsToPurple(pivotElem)
     await delay(speed)
 
-    quickSort(array, setArray, start, right - 1, speed)
-    quickSort(array, setArray, right + 1, end, speed)
+    quickSort(array, setArray, start, right - 1, speed, setInProcess)
+    quickSort(array, setArray, right + 1, end, speed, setInProcess)
+
+    if (isSorted(array)) {
+        setTimeout(() => {
+            setInProcess(false)
+        }, 600);
+    }
 }
+

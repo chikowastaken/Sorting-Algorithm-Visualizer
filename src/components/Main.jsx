@@ -18,7 +18,8 @@ import {
     generateNewArray,
     setArrayElementsToDefault,
     setArrayElementsToFindished,
-    purple
+    purple,
+    isSorted
 } from '../utility/utility'
 import { bubbleSort } from '../algorithms/bubbleSort'
 import { quickSort } from '../algorithms/quickSort'
@@ -27,7 +28,7 @@ import { mergeSort } from '../algorithms/mergeSort'
 
 
 export default function Main() {
-    const [sliderValue, setSliderValue] = useState(100); // Initial value of the slider
+    const [sliderValue, setSliderValue] = useState(29); // Initial value of the slider
     const [tabIndex, setTabIndex] = useState(0)
     const [array, setArray] = useState([])
     const [inProcess, setInProcess] = useState(false)
@@ -35,10 +36,35 @@ export default function Main() {
     const maxArraySize = 160
     const numberFrom = 10
     const numberTo = 200
-    const speed = 500 - Math.pow(array.length, 2) > 0 ?
-        500 - Math.pow(array.length, 2) : 0
+    var speed = 0
+
+    useEffect(() => {
+        const arr = generateNewArray(sliderValue, numberFrom, numberTo)
+        setArray(arr)
+        setArrayElementsToDefault(array)
+    }, [sliderValue])
+
+    useEffect(() => {
+        if (isSorted(array)) {
+            setArrayElementsToDefault(array)
+            generateArray()
+        }
+    }, [tabIndex])
 
 
+    function calculateSpeed() {
+        if (array.length >= 4 && array.length <= 20) {
+            speed = 500 - (array.length - 4) * 25 > 300 ? 500 - (array.length - 4) * 25 > 300 : 300
+        } else if (array.length < 40) {
+            speed = 25
+        } else if (array.length < 80) {
+            speed = 15
+        } else if (array.length < 120) {
+            speed = 10
+        } else if (array.length <= 160) {
+            speed = tabIndex < 2 ? 5 : 0
+        }
+    }
 
     const boxesGap = {
         gap: `${array.length < 5 ?
@@ -59,16 +85,11 @@ export default function Main() {
         setTabIndex(index)
     }
 
-    useEffect(() => {
-        const arr = generateNewArray(sliderValue, numberFrom, numberTo)
-        setArray(arr)
-        setArrayElementsToDefault(array)
-    }, [sliderValue])
-
     // btn clicked
     function handleSort() {
         setArrayElementsToDefault(array)
         setInProcess(true)
+        calculateSpeed()
 
         if (tabIndex === 0) {
             const indexArray = []
@@ -77,28 +98,28 @@ export default function Main() {
             }
 
             mergeSort(array, setArray, 0, array.length - 1, speed).then(() => {
+                console.log('merge - ' + speed)
                 setArrayElementsToFindished(array)
                 setInProcess(false)
             })
         } else if (tabIndex === 1) {
-            quickSort(array, setArray, 0, array.length - 1, 30).then(() => {
-                setInProcess(false)
-            })
+            console.log('quick - ' + speed)
+            quickSort(array, setArray, 0, array.length - 1, speed, setInProcess)
         } else if (tabIndex === 2) {
             heapsort(array, setArray, speed).then(() => {
+                console.log('heap - ' + speed)
                 setInProcess(false)
             })
         } else if (tabIndex === 3) {
             bubbleSort(array, setArray, speed).then(() => {
+                console.log('bubble - ' + speed)
                 setArrayElementsToFindished(array)
                 setInProcess(false)
             })
         }
-
     }
 
     function generateArray() {
-        console.log('new array')
         setArrayElementsToDefault(array)
         const arr = generateNewArray(sliderValue, numberFrom, numberTo)
         setArray(arr)

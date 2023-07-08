@@ -53,6 +53,7 @@ export function setArrayElementsToDefault(array) {
         const element = document.querySelectorAll(`.num-${array[i]}`)
         setElementsToDefault(element)
     }
+    console.log('set')
 }
 
 export function setArrayElementsToFindished(array) {
@@ -111,4 +112,14 @@ export function setElementsToDefault(elements) {
             elements[i].style.backgroundColor = ''
         }
     }
+}
+
+// checks if array is sorted 
+export function isSorted(array, from = 0, to = array.length - 1) {
+    for (let i = from + 1; i <= to; i++) {
+        if (array[i] < array[i - 1]) {
+            return false
+        }
+    }
+    return true
 }
