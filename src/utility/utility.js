@@ -53,7 +53,6 @@ export function setArrayElementsToDefault(array) {
         const element = document.querySelectorAll(`.num-${array[i]}`)
         setElementsToDefault(element)
     }
-    console.log('set')
 }
 
 export function setArrayElementsToFindished(array) {
